@@ -1,0 +1,28 @@
+[project]
+name = "house-kg-seminar"
+version = "0.1.0"
+description = "Statistics & linear-algebra seminar working on the house.kg (Kyrgyzstan real-estate) dataset: distributions, robust summaries, normalization, standardization and nearest-neighbour search."
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "datasets>=2.19",        # Hugging Face datasets loader (pulls the parquet tables)
+    "huggingface-hub>=0.23",  # dataset download + authentication (HF_TOKEN / login)
+    "pandas>=2.0",            # tabular data wrangling
+    "numpy>=1.24",            # numeric arrays; hand-written mean/std/distance
+    "pyarrow>=15.0",          # parquet backend used by the dataset files
+    "matplotlib>=3.7",        # base plotting
+    "seaborn>=0.13",          # histograms / KDE / scatter with a grid theme
+    "scikit-learn>=1.3",      # StandardScaler, NearestNeighbors (verify the hand-made code)
+]
+
+[project.optional-dependencies]
+# Notebook tooling — needed to run the Colab locally, not on Google Colab.
+notebook = [
+    "jupyter>=1.0",          # notebook server / nbconvert
+    "ipykernel>=6.29",       # Python kernel for the notebook
+]
+
+[tool.uv]
+# Keep the resolver reproducible across the group.
+package = false
